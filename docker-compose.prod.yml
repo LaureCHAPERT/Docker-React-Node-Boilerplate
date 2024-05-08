@@ -10,17 +10,20 @@ services:
       context: ./api
       dockerfile: Dockerfile.prod
     restart: unless-stopped
-    env_file:
-      - ./api/.env
     environment:
-      NODE_ENV: production
+      - MONGO_USERNAME
+      - MONGO_PWD
+      - NODE_ENV=production
+
+
 #    depends_on:
 #      - db
   db:
     image: mongo
     restart: unless-stopped
-    env_file:
-      - ./db/.env
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME
+        MONGO_INITDB_ROOT_PASSWORD
     volumes:
       - type: volume
         source: dbprod
