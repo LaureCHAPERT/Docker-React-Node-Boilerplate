@@ -8,14 +8,14 @@ services:
   api:
     build:
       context: ./api
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.prod
     restart: unless-stopped
     env_file:
       - ./api/.env
     environment:
       NODE_ENV: production
-    depends_on:
-      - db
+#    depends_on:
+#      - db
   db:
     image: mongo
     restart: unless-stopped
