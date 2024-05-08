@@ -14,8 +14,6 @@ services:
       - MONGO_USERNAME
       - MONGO_PWD
       - NODE_ENV=production
-
-
 #    depends_on:
 #      - db
   db:
@@ -35,6 +33,12 @@ services:
     restart: unless-stopped
     ports:
       - 80:80
+#      - 443:443
+    #Bind mount for SSL
+#    volumes:
+#      - type: bind
+#        source: /etc/letsencrypt
+#        target: /etc/letsencrypt
     depends_on:
       - api
       - db
